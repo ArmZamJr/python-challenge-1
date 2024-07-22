@@ -51,6 +51,7 @@ menu = {
 }
 
 # 1. Set up order list. Order list will store a list of dictionaries for
+order_list= []
 # menu item name, item price, and quantity ordered
 
 
@@ -118,28 +119,39 @@ while place_order:
                     }
                     i += 1
             # 2. Ask customer to input menu item number
-
+            item_number = input("Select the item number you wish to order: ")
 
             # 3. Check if the customer typed a number
-
+            if item_number.isdigit():
+                item_number = int(item_number)
                 # Convert the menu selection to an integer
 
 
                 # 4. Check if the menu selection is in the menu items
-
+                if item_number in menu_items:
                     # Store the item name as a variable
-
+                    item_name = menu_items[item_number]["Item name"]
+                    item_price = menu_items[item_number]["Price"]
 
                     # Ask the customer for the quantity of the menu item
-
+                    item_quantity = input (f"How many {item_name} would you like to order? ")
 
                     # Check if the quantity is a number, default to 1 if not
-
+                    if not  item_quantity.isdigit():
+                        item_quantity = 1
+                    else:
+                        item_quantity = int(item_quantity)    
 
                     # Add the item name, price, and quantity to the order list
-
-
+                    order.append({
+                        "Item name": item_name,
+                        "Price": item_price,
+                        "Quantity": item_quantity
+                    })
+                    print(f"Added {item_quantity} {item_name} to your order")
                     # Tell the customer that their input isn't valid
+                    # display menu to use then display "The choice you made was
+                    # an option, please select again. "
 
 
                 # Tell the customer they didn't select a menu option
@@ -156,9 +168,11 @@ while place_order:
         keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ")
 
         # 5. Check the customer's input
+        if keep_ordering.lower() == 'y':
 
                 # Keep ordering
-
+            
+                elif keep_ordering.lower() == 'n':
                 # Exit the keep ordering question loop
 
                 # Complete the order
