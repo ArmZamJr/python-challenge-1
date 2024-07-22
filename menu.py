@@ -150,15 +150,19 @@ while place_order:
                     })
                     print(f"Added {item_quantity} {item_name} to your order")
                     # Tell the customer that their input isn't valid
-                    # display menu to use then display "The choice you made was
+                else:
+                    print(f"{item_number} was not a valid menu option.")
+                    # display menu to use then display "The choice you made was not
                     # an option, please select again. "
+            else:
+                print("The choice you made was not an option, please select agin. ")
 
 
                 # Tell the customer they didn't select a menu option
-
+        
         else:
             # Tell the customer they didn't select a menu option
-            print(f"{menu_category} was not a menu option.")
+           print(f"{menu_category} was not a menu option.")
     else:
         # Tell the customer they didn't select a number
         print("You didn't select a number.")
@@ -203,7 +207,7 @@ print("--------------------------|--------|----------")
 for item in order_list:
 
     # 7. Store the dictionary items as variables (this is confusing)oh follow print("
-    # Itemname  |Price | |Quantity")
+    # Item name  |Price | |Quantity") mark meyers book
     item_name = item["Item name"]
     item_price = item["Price"]
     item_quantity = item["Quantity"]
