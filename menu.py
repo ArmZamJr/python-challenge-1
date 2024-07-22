@@ -51,7 +51,7 @@ menu = {
 }
 
 # 1. Set up order list. Order list will store a list of dictionaries for
-order_list= []
+order_list = []
 # menu item name, item price, and quantity ordered
 
 
@@ -143,7 +143,7 @@ while place_order:
                         item_quantity = int(item_quantity)    
 
                     # Add the item name, price, and quantity to the order list
-                    order.append({
+                    order_list.append({
                         "Item name": item_name,
                         "Price": item_price,
                         "Quantity": item_quantity
@@ -169,22 +169,25 @@ while place_order:
 
         # 5. Check the customer's input
         if keep_ordering.lower() == 'y':
-
+            break
                 # Keep ordering
-            
-                elif keep_ordering.lower() == 'n':
+        elif keep_ordering.lower() == 'n':
                 # Exit the keep ordering question loop
-
+            place_order = False
                 # Complete the order
-
-                # Since the customer decided to stop ordering, thank them for
+                # line 02 place_order
+            break               
+                 # Since the customer decided to stop ordering, thank them for
+                 # display "We appreciate you ordering with us!"
+            print("We appreciate you ordering with us!")
                 # their order
 
                 # Exit the keep ordering question loop
-
+    
 
                 # Tell the customer to try again
-
+        else:
+            print("Please try again, invalid input, please type (Y)es or (N)o ")
 
 # Print out the customer's order
 print("This is what we are preparing for you.\n")
@@ -196,15 +199,25 @@ print("Item name                 | Price  | Quantity")
 print("--------------------------|--------|----------")
 
 # 6. Loop through the items in the customer's order
+# for loop item name, price, how many (quantity)
+for item in order_list:
 
-    # 7. Store the dictionary items as variables
-
+    # 7. Store the dictionary items as variables (this is confusing)oh follow print("
+    # Itemname  |Price | |Quantity")
+    item_name = item["Item name"]
+    item_price = item["Price"]
+    item_quantity = item["Quantity"]
 
     # 8. Calculate the number of spaces for formatted printing
-
-
+    num_of_name_spaces = 24 - len(item_name)
+    num_of_price_spaces = 6 - len(f"{item_price:.2f}")
+    num_of_quantity_spaces = 8 - len(str(item_quantity))
     # 9. Create space strings
+    name_spaces = " " * num_of_name_spaces
+    price_spaces = " " * num_of_price_spaces
+    quantity_spaces = " " * num_of_quantity_spaces
 
+    print(f"{item_name}{name_spaces} | ${item_price:.2f}{price_spaces} | {item_quantity}{quantity_spaces}")
 
     # 10. Print the item name, price, and quantity
 
@@ -212,3 +225,8 @@ print("--------------------------|--------|----------")
 # 11. Calculate the cost of the order using list comprehension
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
+total_cost = 0
+for item in order_list:
+    item_cost = item["Price"] * item["Quantity"]
+    total_cost += item_cost
+print(f"Total cost of your order: ${total_cost:.2f}")
